@@ -1,0 +1,237 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block title %}Transaksi{% endblock %}
+
+{% block your_content_here %}
+<div class="overlap">
+    <div class="content-card">
+        <h1><i class="bi bi-cash-stack" style="margin-right: 4px;"></i> Transaksi</h1>
+
+        <!-- message -->
+        <div class="message-box mt-3" id="message-box">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible fade show {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}"
+                role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-- /message -->
+
+        <!-- Cek kategori sebelum menampilkan alert atau tombol tambah transaksi -->
+        {% if categories %}
+        <!-- Jika ada kategori, tampilkan tombol tambah transaksi -->
+        <a href="{% url 'youfin_app:tambah_transaksi' %}" class="btn btn-primary mb-3">Tambah Transaksi</a>
+        {% else %}
+        <!-- Jika tidak ada kategori, tampilkan alert -->
+        <div class="alert alert-warning" role="alert" id="no-category-alert">
+            Anda harus menambahkan kategori terlebih dahulu sebelum bisa menambah transaksi.
+        </div>
+        <a href="{% url 'youfin_app:tambah_kategori' %}" class="btn btn-primary mb-3">Tambah Kategori</a>
+        {% endif %}
+        
+        <!-- Ringkasan Keuangan -->
+        <div class="alert alert-primary mb-3" role="alert" id="no-category-alert">
+            <strong>Ringkasan Keuangan</strong>
+            <ul><hr>
+                <li>Total Pemasukan: <span id="total-pemasukan"></span></li><hr>
+                <li>Total Pengeluaran: <span id="total-pengeluaran"></span></li><hr>
+                <li>Saldo Bersih: <span id="saldo-bersih"></span></li>
+            </ul>
+        </div>
+
+        <!-- Alert untuk saldo bersih minus menggunakan class -->
+        <div class="alert alert-warning negative-balance-alert mb-3" id="no-category-alert" role="alert" style="display: none;">
+            Pengeluaran Anda melebihi pemasukan. Harap perhatikan saldo bersih Anda!
+        </div>
+
+        <!-- Form Filter Transaksi -->
+        <div class="filter-form mb-3" style="margin-top: 50px;">
+            <form method="GET" action="">
+                <div class="row">
+                    <div class="col-md-2">    
+                        <select name="bulan" id="bulan" class="form-select" style="width: auto;">
+                            <option value="">Semua Bulan</option>
+                            {% for i in bulan_list %}
+                                <option value="{{ i }}" {% if bulan == i|stringformat:"i" %}selected{% endif %}>{{ i }}</option>
+                            {% endfor %}
+                        </select>                        
+                    </div>
+                    <div class="col-md-2">  
+                        <select name="tahun" id="tahun" class="form-select" style="width: auto;">
+                            <option value="">Semua Tahun</option>
+                            {% for year in years %}
+                                <option value="{{ year }}">{{ year }}</option>
+                            {% endfor %}
+                        </select>                        
+                    </div>
+                    <div class="col-md-6" style="margin-left: 20px;">
+                        <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-funnel"></i> Filter
+                        </button>
+                        <a href="{% url 'youfin_app:transaksi' %}" class="btn btn-secondary">Reset</a>
+                    </div>
+                </div>
+            </form>
+        </div>                                          
+
+        <!-- Tabel Transaksi -->
+        <div class="table-responsive" style="margin-top: 30px;">
+            <table class="table">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>Tanggal</th>
+                        <th>Nama Transaksi</th>
+                        <th>Kategori</th>
+                        <th>Jenis</th>
+                        <th>Nominal</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr style="text-align: center;">
+                        <td>{{ transaction.date }}</td>
+                        <td>{{ transaction.name }}</td>
+                        <td>{{ transaction.category.name }}</td>
+                        <td>{{ transaction.get_transaction_type_display }}</td>
+                        <td class="transaction-amount" data-amount="{{ transaction.amount }}"
+                            data-type="{{ transaction.transaction_type }}">
+                            {{ transaction.amount }}
+                        </td>
+                        <td>
+                            <div class="d-flex flex-row gap-1">
+                                <a href="{% url 'youfin_app:edit_transaksi' transaction.id %}"
+                                    class="btn btn-warning">Edit</a>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ transaction.id }}">
+                                    Hapus
+                                </button>
+                            </div>
+                            <!-- Modal Hapus -->
+                            <div class="modal fade" id="deleteModal{{ transaction.id }}" tabindex="-1"
+                                aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Transaksi
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-start">
+                                            Apakah Anda yakin ingin menghapus transaksi "{{ transaction.name }}"?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{% url 'youfin_app:delete_transaksi' transaction.id %}"
+                                                method="POST">
+                                                {% csrf_token %}
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" style="color: red; text-align: center;">Tidak ada transaksi yang ditemukan.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script_transaksi %}
+<script>
+    // Fungsi untuk format angka menjadi format rupiah
+    function formatRupiah(angka) {
+        var reverse = angka.toString().split('').reverse().join('');
+        var ribuan = reverse.match(/\d{1,3}/g);
+        ribuan = ribuan.join('.').split('').reverse().join('');
+        return 'Rp ' + ribuan;
+    }
+
+    // Menerapkan format rupiah pada elemen transaction-amount
+    document.querySelectorAll('.transaction-amount').forEach(function (element) {
+        var amountValue = parseFloat(element.getAttribute('data-amount'));
+        var transactionType = element.getAttribute('data-type'); // Mendapatkan jenis transaksi
+
+        if (!isNaN(amountValue)) {
+            // Menambahkan tanda + atau - tergantung jenis transaksi
+            var formattedAmount = formatRupiah(amountValue);
+            if (transactionType === 'Pemasukan') {
+                element.textContent = '+ ' + formattedAmount;
+            } else if (transactionType === 'Pengeluaran') {
+                element.textContent = '- ' + formattedAmount;
+            }
+        }
+    });
+
+    // script untuk alert message
+    document.addEventListener('DOMContentLoaded', function () {
+        var alerts = document.querySelectorAll('.alert');
+
+        // Alert untuk kategori kosong tidak dihilangkan
+        var noCategoryAlert = document.getElementById('no-category-alert');
+        if (noCategoryAlert) {
+            // Tidak ada timeout, alert ini tetap tampil
+            noCategoryAlert.classList.add('show');
+        }
+
+        // Untuk alert dalam message-box
+        alerts.forEach(function (alert) {
+            if (!alert.closest('#no-category-alert')) {
+                setTimeout(function () {
+                    var alertElement = new bootstrap.Alert(alert);
+                    alertElement.close();
+                }, 3000);
+            }
+        });
+    });
+
+    // Fungsi untuk update Ringkasan Keuangan dengan format Rupiah
+    function updateSummary() {
+        const totalPemasukan = document.querySelectorAll('.transaction-amount[data-type="Pemasukan"]');
+        const totalPengeluaran = document.querySelectorAll('.transaction-amount[data-type="Pengeluaran"]');
+
+        let pemasukan = 0;
+        totalPemasukan.forEach(function (el) {
+            pemasukan += parseFloat(el.getAttribute('data-amount'));
+        });
+
+        let pengeluaran = 0;
+        totalPengeluaran.forEach(function (el) {
+            pengeluaran += parseFloat(el.getAttribute('data-amount'));
+        });
+
+        const saldoBersih = pemasukan - pengeluaran;
+
+        document.getElementById('total-pemasukan').textContent = formatRupiah(pemasukan);
+        document.getElementById('total-pengeluaran').textContent = formatRupiah(pengeluaran);
+
+        // Update saldo bersih dengan tanda minus jika perlu
+        if (saldoBersih < 0) {
+            document.getElementById('saldo-bersih').textContent = '- ' + formatRupiah(Math.abs(saldoBersih));
+            document.querySelector('.negative-balance-alert').style.display = 'block'; // Menampilkan alert
+        } else {
+            document.getElementById('saldo-bersih').textContent = formatRupiah(saldoBersih);
+            document.querySelector('.negative-balance-alert').style.display = 'none'; // Menyembunyikan alert
+        }
+    }
+
+    // Update Ringkasan Keuangan setelah page load
+    updateSummary();
+</script>
+{% endblock %}

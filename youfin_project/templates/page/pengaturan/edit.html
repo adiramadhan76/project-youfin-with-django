@@ -1,0 +1,307 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block title %} Edit Profil {% endblock %}
+
+{% block style_pengaturan %}
+<style>
+    /* Modal umum */
+    .modal-content {
+        border-radius: 8px;
+        /* Membulatkan sudut modal */
+    }
+
+    /* Header modal */
+    .modal-header {
+        background-color: #007bff;
+        /* Warna biru */
+        color: #ffffff;
+        /* Warna teks putih */
+        border-bottom: none;
+        /* Hilangkan garis bawah pada header */
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    /* Body modal */
+    .modal-body {
+        padding: 15px 20px;
+        /* Atur jarak dalam modal body */
+        font-size: 1rem;
+        /* Ukuran font standar */
+        line-height: 1.6;
+        /* Jarak antar barisan teks */
+        color: #333;
+        /* Warna teks gelap */
+    }
+
+    /* Ubah tampilan teks di dalam daftar agar lebih rapi */
+    .modal-body ul {
+        padding-left: 20px;
+        list-style-type: disc;
+        /* Gunakan bullet points */
+    }
+
+    .modal-body li {
+        margin-bottom: 10px;
+        /* Beri jarak antar item di dalam daftar */
+    }
+
+    /* Tombol tutup pada header modal */
+    .btn-close {
+        background-color: transparent;
+        border: none;
+        font-size: 1.2em;
+        color: #fff;
+        line-height: 1;
+    }
+
+    .btn-close:hover {
+        color: #ffc107;
+        /* Warna hover */
+    }
+</style>
+{% endblock %}
+
+{% block your_content_here %}
+<div class="overlap">
+    <div class="content-card">
+        <div class="d-flex align-items-center">
+            <h1><i class="bi bi-pencil-square"></i> Edit Profil</h1>
+            <!-- Tombol Informasi -->
+            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#infoModal">
+                <i class="bi bi-question-circle"></i>
+            </button>
+        </div>
+
+        <!-- message -->
+        <div class="message-box mt-3">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible fade show {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}"
+                role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-- /message -->
+
+        <div class="card mt-4">
+            <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                <h5 class="me-3">Form Edit Profil: {{ request.user.first_name }}
+                    {% if request.user.last_name != "-" %}
+                    {{ request.user.last_name }}
+                    {% else %}
+                    {% endif %}
+                </h5>
+                <!-- Tombol Ubah Password -->
+                <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#ubahPasswordModal">
+                    <i class="bi bi-key"></i> Ubah Password
+                </button>
+            </div>
+
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- Nama Depan -->
+                    <div class="form-group mb-3">
+                        <label for="first_name">Nama Depan</label>
+                        <input type="text" class="form-control mt-1" id="first_name" name="first_name"
+                            value="{{ request.user.first_name|default_if_none:'' }}" placeholder="Masukkan nama depan">
+                    </div>
+
+                    <!-- Nama Belakang -->
+                    <div class="form-group mb-3">
+                        <label for="last_name">Nama Belakang</label>
+                        <input type="text" class="form-control mt-1" id="last_name" name="last_name"
+                            value="{{ request.user.last_name|default_if_none:'' }}"
+                            placeholder="Masukkan nama belakang">
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group mb-3">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control mt-1" id="username" name="username"
+                            value="{{ request.user.username|default_if_none:'' }}" placeholder="Masukkan username">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group mb-3">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control mt-1" id="email" name="email"
+                            value="{{ request.user.email|default_if_none:'' }}" placeholder="Masukkan email">
+                    </div>
+
+                    <!-- Nomor Telepon -->
+                    <div class="form-group mb-3">
+                        <label for="phone_number">Nomor Telepon</label>
+                        <input type="text" class="form-control mt-1" id="phone_number" name="phone_number"
+                            value="{{ request.user.profile.phone_number|default_if_none:'' }}"
+                            placeholder="Masukkan nomor telepon">
+                    </div>
+
+                    <!-- Alamat -->
+                    <div class="form-group mb-3">
+                        <label for="address">Alamat</label>
+                        <textarea class="form-control mt-1" id="address" name="address"
+                            placeholder="Masukkan alamat">{% if request.user.profile.address %}{{ request.user.profile.address }}{% endif %}</textarea>
+                    </div>
+
+                    <!-- Tanggal Lahir -->
+                    <div class="form-group mb-3">
+                        <label for="birth_date">Tanggal Lahir</label>
+                        <input type="date" class="form-control mt-1" id="birth_date" name="birth_date"
+                            value="{{ request.user.profile.birth_date|date:'Y-m-d' }}">
+                    </div>
+
+                    <!-- Gender - Radio Button -->
+                    <div class="form-group mb-3">
+                        <label class="mb-2">Jenis Kelamin</label><br>
+                        <input type="radio" id="laki-laki" name="gender" value="L"
+                            {% if request.user.profile.gender == "L" %}checked{% endif %}>
+                        <label class="me-4" for="laki-laki">Laki-laki</label>
+                        <input type="radio" id="perempuan" name="gender" value="P"
+                            {% if request.user.profile.gender == "P" %}checked{% endif %}>
+                        <label for="perempuan">Perempuan</label>
+                    </div>
+
+                    <!-- Foto Profil -->
+                    <div class="form-group mb-3">
+                        <label for="profile_picture">Foto Profil</label>
+                        <input type="file" class="form-control mt-1" id="profile_picture" name="profile_picture">
+                    </div>
+
+                    {% if request.user.profile.profile_picture %}
+                    <div class="form-group mb-3">
+                        <strong>Foto Profil Saat Ini:</strong><br>
+                        <img src="{{ request.user.profile.profile_picture.url }}" alt="Foto Profil"
+                            class="img-thumbnail mt-1" style="width: 120px; height: 120px;">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="clear_picture">Hapus Foto Profil?</label>
+                        <input type="checkbox" id="clear_picture" name="clear_picture">
+                    </div>
+                    {% endif %}
+
+                    <!-- Tombol untuk simpan perubahan -->
+                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                    <a href="{% url 'youfin_app:pengaturan' %}" class="btn btn-secondary">Batal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Informasi -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Petunjuk Pengisian Nama</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Ketika mengisi formulir, ada beberapa cara yang dapat Anda gunakan untuk mengisi nama depan dan nama
+                    belakang jika nama Anda terdiri dari tiga kata atau satu kata:</p>
+                <ul>
+                    <li><strong style="font-weight: 600;">Jika nama terdiri dari tiga kata atau lebih:</strong> Anda
+                        dapat memasukkan dua atau
+                        lebih kata pertama sebagai nama depan dan kata terakhir sebagai nama belakang.</li>
+                    <li><strong style="font-weight: 600;">Jika nama terdiri dari satu kata:</strong> Anda dapat
+                        memasukkan seluruh kata sebagai
+                        nama depan. Jika formulir mengharuskan untuk memasukkan nama belakang, tetapi Anda hanya
+                        memiliki satu kata dalam nama Anda, Anda bisa memasukkan tanda strip (-) untuk menunjukkan bahwa
+                        Anda hanya memiliki satu kata dalam nama Anda.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Ubah Password -->
+<div class="modal fade" id="ubahPasswordModal" tabindex="-1" aria-labelledby="ubahPasswordModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ubahPasswordModalLabel">Ubah Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'youfin_app:ubah_password' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="current_password" class="form-label">Password Lama</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="current_password" name="current_password"
+                                placeholder="Masukkan password lama Anda">
+                            <span class="input-group-text" style="cursor: pointer;" onclick="togglePasswordVisibility('current_password')">
+                                <i class="bi bi-eye-slash"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="new_password" class="form-label">Password Baru</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="new_password" name="new_password"
+                                placeholder="Masukkan password baru Anda">
+                            <span class="input-group-text" style="cursor: pointer;" onclick="togglePasswordVisibility('new_password')">
+                                <i class="bi bi-eye-slash"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Konfirmasi Password Baru</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                                placeholder="Konfirmasi password baru Anda">
+                            <span class="input-group-text" style="cursor: pointer;" onclick="togglePasswordVisibility('confirm_password')">
+                                <i class="bi bi-eye-slash"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start gap-1">
+                        <button type="submit" class="btn btn-primary">Ubah Password</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script_pengaturan %}
+<script>
+    // script untuk alert message
+    document.addEventListener('DOMContentLoaded', function () {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function (alert) {
+            setTimeout(function () {
+                var alertElement = new bootstrap.Alert(alert);
+                alertElement.close();
+            }, 5000);
+        });
+    });
+
+    // Melihat/Menyembunyikan Password
+    function togglePasswordVisibility(inputId) {
+        const inputField = document.getElementById(inputId);
+        const icon = document.querySelector(`#${inputId} + span i`);
+
+        if (inputField.type === "password") {
+            inputField.type = "text";
+            icon.classList.remove("bi-eye-slash");
+            icon.classList.add("bi-eye");
+        } else {
+            inputField.type = "password";
+            icon.classList.remove("bi-eye");
+            icon.classList.add("bi-eye-slash");
+        }
+    }
+</script>
+{% endblock %}

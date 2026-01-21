@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | YouFin</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- Style default Back-End -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/styleBackend.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/dashboard.css' %}">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <!-- Add Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Style Tambahan dari masing-masing Halaman yang berbeda (Optional Jika Ada) -->
+    <!-- dashboard -->
+    {% block style_dashboard %}{% endblock %}
+    <!-- anggaran -->
+    {% block style_anggaran %}{% endblock %}
+    <!-- transaksi -->
+    {% block style_transaksi %}{% endblock %}
+    <!-- kategori -->
+    {% block style_kategori %}{% endblock %}
+    <!-- tips -->
+    {% block style_tips %}{% endblock %}
+    <!-- pengaturan -->
+    {% block style_pengaturan %}{% endblock %}
+
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar-container">
+        <div class="sidebar-logo">
+            <img src="{% static 'img/logo_yf.png' %}" alt="YouFin Logo">
+            <span class="logo-text">YouFin</span>
+            <button class="menu-toggle d-lg-none">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <ul class="menu-list">
+
+            <!-- Menu Dashboard -->
+            <li class="menu-item">
+                <a href="{% url 'youfin_app:dashboard' %}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-speedometer2"></i>
+                    </span>
+                    <span class="menu-text">Dashboard</span>
+                    <span class="tooltip-text">Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Menu Anggaran -->
+            <li class="menu-item">
+                <a href="{% url 'youfin_app:anggaran' %}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-wallet2"></i>
+                    </span>
+                    <span class="menu-text">Anggaran</span>
+                    <span class="tooltip-text">Anggaran</span>
+                </a>
+            </li>
+
+            <!-- Menu Transaksi -->
+            <li class="menu-item">
+                <a href="{% url 'youfin_app:transaksi' %}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-cash-stack"></i>
+                    </span>
+                    <span class="menu-text">Transaksi</span>
+                    <span class="tooltip-text">Transaksi</span>
+                </a>
+            </li>
+
+            <!-- Menu Kategori -->
+            <li class="menu-item">
+                <a href="{% url 'youfin_app:kategori' %}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-collection"></i>
+                    </span>
+                    <span class="menu-text">Kategori</span>
+                    <span class="tooltip-text">Kategori</span>
+                </a>
+            </li>
+
+            <!-- Menu Notifikasi -->
+            <!-- <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-bell"></i>
+                    </span>
+                    <span class="menu-text">Notifikasi</span>
+                    <span class="tooltip-text">Notifikasi</span>
+                </a>
+            </li> -->
+
+            <!-- Menu Premium -->
+            <!-- <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-star"></i>
+                    </span>
+                    <span class="menu-text">Premium</span>
+                    <span class="tooltip-text">Premium</span>
+                </a>
+            </li> -->
+
+            <!-- Menu Konsultasi -->
+            <!-- <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-chat-dots"></i>
+                    </span>
+                    <span class="menu-text">Konsultasi</span>
+                    <span class="tooltip-text">Konsultasi</span>
+                </a>
+            </li> -->
+
+            <!-- Menu Tips -->
+            <li class="menu-item">
+                <a href="{% url 'youfin_app:tips' %}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </span>
+                    <span class="menu-text">Tips</span>
+                    <span class="tooltip-text">Tips</span>
+                </a>
+            </li>
+
+            <!-- Menu Pengaturan -->
+            <li class="menu-item settings">
+                <a href="{% url 'youfin_app:pengaturan' %}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-gear"></i>
+                    </span>
+                    <span class="menu-text">Pengaturan</span>
+                    <span class="tooltip-text">Pengaturan</span>
+                </a>
+            </li>
+
+            <!-- Menu Logout -->
+            <li class="menu-item">
+                <a href="#logout" class="menu-link" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <span class="menu-icon">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </span>
+                    <span class="menu-text">Logout</span>
+                    <span class="tooltip-text">Logout</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <!-- /Sidebar -->
+
+    <!-- Add this after sidebar -->
+    <div class="overlay"></div>
+
+    <!-- Wrap your existing content -->
+    <div class="main-content">
+        <div class="iphone-pro-max">
+            <div class="div">
+
+                <!-- Your Content -->
+                {% block your_content_here %}
+                {% endblock %}
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Modal Logout -->
+    <div class="modal fade" id="logoutModal" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- Sidebar JS -->
+    <script src="{% static 'bootstrap/js/sidebarBackend.js' %}"></script>
+
+    <!-- Script Tambahan dari masing-masing Halaman yang berbeda (Optional Jika Ada) -->
+    <!-- dashboard -->
+    {% block script_dashboard %}{% endblock %}
+    <!-- anggaran -->
+    {% block script_anggaran %}{% endblock %}
+    <!-- transaksi -->
+    {% block script_transaksi %}{% endblock %}
+    <!-- kategori -->
+    {% block script_kategori %}{% endblock %}
+    <!-- tips -->
+    {% block script_tips %}{% endblock %}
+    <!-- pengaturan -->
+    {% block script_pengaturan %}{% endblock %}
+
+</body>
+
+</html>

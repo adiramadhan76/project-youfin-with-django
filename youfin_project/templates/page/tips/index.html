@@ -1,0 +1,698 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block title %} Tips Keuangan {% endblock %}
+
+{% block your_content_here %}
+<div class="overlap">
+    <div class="content-card">
+
+        <!-- Content here -->
+        <h1><i class="bi bi-lightbulb"></i> Tips Keuangan</h1>
+        <br><br>
+
+        <!-- Content here -->
+        <section id="features" class="features-section bg-white">
+            <div class="container">
+
+                <!-- Buat Anggaran -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Buat Anggaran
+                        <br><br>
+                        <p class="text-black fw-lighter fs-6" style="text-align: justify;">Mulailah dengan mencatat
+                            semua sumber pendapatan dan
+                            pengeluaran bulanan Anda. Buat anggaran yang realistis dan patuhi anggaran tersebut.
+                            Ini membantu Anda mengontrol keuangan dan mengidentifikasi area yang bisa dihemat.
+                        </p>
+                        <br>
+                        <a href="Buat Anggaran" class="learn-more d-inline-block mt-3 fs-6" data-bs-toggle="modal"
+                            data-bs-target="#feature1Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Membuat Anggaran
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Membuat Anggaran -->
+                <div class="modal fade" id="feature1Modal" tabindex="-1" aria-labelledby="feature1ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature1ModalLabel">Tips Membuat
+                                    Anggaran</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Berikut beberapa tips yang bisa membantu kamu dalam
+                                    membuat anggaran keuangan pribadi yang efektif:
+                                    <br><br> 1. Catat Semua Pengeluaran dan Pendapatan
+                                    <br><br> Mulailah dengan mencatat semua sumber pendapatan serta pengeluaran
+                                    bulananmu, baik besar maupun kecil.
+                                    Ini memberi gambaran jelas tentang arus kas dan membantu kamu mengidentifikasi area
+                                    pengeluaran yang bisa dikurangi.
+                                    <br><br> 2. Prioritaskan Kebutuhan
+                                    <br><br> Bedakan antara kebutuhan dan keinginan. Pastikan kebutuhan dasar seperti
+                                    makanan,
+                                    tempat tinggal, utilitas, dan transportasi tercover terlebih dahulu sebelum
+                                    mengalokasikan dana untuk keinginan.
+                                    <br><br> 3. Buat Rencana Pengeluaran
+                                    <br><br> Tentukan anggaran untuk setiap kategori pengeluaran, seperti makanan,
+                                    hiburan, transportasi, dan lain-lain.
+                                    Gunakan pedoman umum seperti 50% untuk kebutuhan, 30% untuk keinginan, dan 20% untuk
+                                    tabungan atau pelunasan utang.
+                                    <br><br> 4. Gunakan Alat Penganggaran
+                                    <br><br> Manfaatkan aplikasi atau alat penganggaran seperti Microsoft Excel, Mint,
+                                    atau YNAB (You Need A Budget) untuk memantau pengeluaran dan memastikan kamu tetap
+                                    dalam anggaran.
+                                    <br><br> 5. Tetapkan Tujuan Keuangan
+                                    <br><br> Tentukan tujuan keuangan jangka pendek dan jangka panjang, seperti menabung
+                                    untuk liburan, membeli rumah, atau pensiun.
+                                    Alokasikan sebagian pendapatan untuk mencapai tujuan ini.
+                                    <br><br> 6. Sisihkan Tabungan di Awal
+                                    <br><br> Saat menerima pendapatan, segera sisihkan sebagian untuk tabungan atau
+                                    investasi sebelum mengalokasikan untuk pengeluaran lainnya.
+                                    Prinsip ini dikenal sebagai "pay yourself first."
+                                    <br><br> 7. Pantau dan Tinjau Kembali Anggaran
+                                    <br><br> Secara rutin, tinjau kembali anggaran dan sesuaikan jika diperlukan.
+                                    Pastikan anggaran tetap relevan dengan kondisi keuangan dan tujuanmu.
+                                    <br><br> 8. Hindari Pengeluaran impulsif
+                                    <br><br> Berpegang pada daftar belanjaan saat berbelanja dan hindari godaan untuk
+                                    membeli barang-barang yang tidak direncanakan.
+                                    <br><br> 9. Buat Dana Darurat
+                                    <br><br> Sisihkan sejumlah dana untuk kebutuhan darurat agar tidak mengganggu
+                                    anggaran utama saat ada pengeluaran tak terduga.
+                                    <br><br> 10. Belajar dan Beradaptasi
+                                    <br><br> Anggaran bukanlah sesuatu yang kaku. Belajar dari kesalahan, adaptasi, dan
+                                    terus perbaiki rencana pengeluaranmu.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mengatur Keuangan -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Mengatur Keuangan
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;">Sebuah proses mengelola
+                            pendapatan, pengeluaran, investasi, dan
+                            sumber daya keuangan lainnya secara efektif dan efisien. Tujuannya adalah untuk mencapai
+                            stabilitas finansial, memenuhi kebutuhan jangka pendek dan jangka panjang, serta mencapai
+                            tujuan keuangan tertentu.
+                        </p>
+                        <br>
+                        <a href="Mengatur Keuangan" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                            data-bs-target="#feature2Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Mengatur Keuangan
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Mengatur Keuangan -->
+                <div class="modal fade" id="feature2Modal" tabindex="-1" aria-labelledby="feature2ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature2ModalLabel">Tips Mengatur
+                                    Keuangan
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Berikut beberapa tips yang bisa membantu kamu dalam
+                                    mengatur keuangan pribadi yang efektif:
+                                    <br><br> 1. Buat Anggaran Bulanan
+                                    <br><br> Catat semua pendapatan dan pengeluaran bulanan kamu. Buat rencana
+                                    pengeluaran berdasarkan kategori seperti kebutuhan pokok,
+                                    tabungan, dan hiburan, lalu patuhi anggaran tersebut.
+                                    <br><br> 2. Prioritaskan Tabungan
+                                    <br><br> Sisihkan sebagian dari pendapatan kamu untuk tabungan segera setelah
+                                    menerima gaji.
+                                    Prinsip “bayar diri sendiri terlebih dahulu” dapat membantu memastikan bahwa kamu
+                                    selalu menabung.
+                                    <br><br> 3. Kurangi Pengeluaran Tidak Penting
+                                    <br><br> Evaluasi pengeluaran kamu dan hilangkan atau kurangi hal-hal yang tidak
+                                    terlalu penting.
+                                    Misalnya, kurangi makan di luar atau belanja impulsif.Tentukan anggaran untuk setiap
+                                    kategori pengeluaran,
+                                    seperti makanan, hiburan, transportasi, dan lain-lain. Gunakan pedoman umum seperti
+                                    50% untuk kebutuhan, 30% untuk keinginan,
+                                    dan 20% untuk tabungan atau pelunasan utang.
+                                    <br><br> 4. Buat Dana Darurat
+                                    <br><br> Miliki dana darurat yang cukup untuk menutupi setidaknya 3-6 bulan
+                                    pengeluaran.
+                                    Ini penting untuk mengatasi situasi tak terduga seperti kehilangan pekerjaan atau
+                                    biaya medis.
+                                    <br><br> 5. Kelola Utang dengan Bijak
+                                    <br><br> Usahakan untuk membayar utang dengan suku bunga tinggi terlebih dahulu.
+                                    Jangan menambah utang baru jika tidak perlu dan selalu bayar lebih dari jumlah
+                                    minimum jika memungkinkan.
+                                    <br><br> 6. Berinvestasi untuk Masa Depan
+                                    <br><br> Pertimbangkan untuk menginvestasikan sebagian dari tabungan kamu dalam
+                                    instrumen investasi yang sesuai dengan profil risiko kamu,
+                                    seperti saham, obligasi, atau reksa dana.
+                                    <br><br> 7. Gunakan Alat Keuangan Digital
+                                    <br><br> Manfaatkan aplikasi atau perangkat lunak pengelola keuangan untuk membantu
+                                    memantau dan mengelola pengeluaran,
+                                    serta untuk mengingatkan tentang jatuh tempo tagihan.
+                                    <br><br> 8. Tetapkan Tujuan Keuangan
+                                    <br><br> Tentukan tujuan keuangan jangka pendek dan jangka panjang, seperti liburan,
+                                    pendidikan anak, atau pensiun.
+                                    Buat rencana untuk mencapai tujuan-tujuan tersebut.
+                                    <br><br> 9. Evaluasi dan Sesuaikan Secara Berkala
+                                    <br><br> Tinjau kembali anggaran dan rencana keuangan kamu secara berkala untuk
+                                    menyesuaikan dengan perubahan situasi atau tujuan hidup.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memisahkan Kebutuhan dan Keinginan -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Memisahkan Kebutuhan dan Keinginan
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;">Dengan belajar memisahkan
+                            kedua hal ini,
+                            kita bisa lebih fokus pada pengeluaran yang benar-benar penting dan mengelola anggaran
+                            dengan lebih efektif.
+                            Ini juga membantu kita membuat keputusan finansial yang lebih bijaksana dan menghindari
+                            hutang yang tidak perlu.
+                            <br><br>
+                            Kebutuhan adalah hal-hal yang esensial untuk keberlangsungan hidup dan kesejahteraan dasar,
+                            seperti makanan,
+                            tempat tinggal, pakaian, perawatan kesehatan, dan transportasi untuk pergi bekerja atau
+                            sekolah.
+                            Keinginan adalah hal-hal yang tidak esensial, tetapi menambah kenyamanan atau kenikmatan
+                            hidup, seperti makan di restoran, gadget terbaru, liburan mewah, atau pakaian mode.
+                        </p>
+                        <br>
+                        <a href="Memisahkan Kebutuhan dan Keinginan" class="learn-more d-inline-block mt-3"
+                            data-bs-toggle="modal" data-bs-target="#feature3Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Memisahkan Kebutuhan dan Keinginan
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Memisahkan Kebutuhan dan Keinginan -->
+                <div class="modal fade" id="feature3Modal" tabindex="-1" aria-labelledby="feature3ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature3ModalLabel">Tips
+                                    Memisahkan Kebutuhan dan Keinginan</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Berikut beberapa tips yang bisa membantu kamu dalam
+                                    memisahkan kebutuhan dan keinginan yang efektif:
+                                    <br><br> 1. Buat Daftar Kebutuhan dan Keinginan
+                                    <br><br> Tuliskan semua pengeluaran potensial dan klasifikasikan masing-masing
+                                    sebagai kebutuhan atau keinginan.
+                                    Kebutuhan adalah hal-hal yang esensial untuk hidup sehari-hari, seperti makanan,
+                                    tempat tinggal, dan utilitas.
+                                    Keinginan adalah hal-hal yang menambah kenyamanan atau kesenangan, seperti liburan
+                                    atau gadget terbaru.
+                                    <br><br> 2. Prioritaskan Kebutuhan
+                                    <br><br> Pastikan kebutuhan dasar selalu terpenuhi terlebih dahulu sebelum
+                                    mempertimbangkan untuk memenuhi keinginan.
+                                    Ini membantu memastikan bahwa keuanganmu tetap stabil.
+                                    <br><br> 3. Tanyakan pada Diri Sendiri
+                                    <br><br> Setiap kali ingin membeli sesuatu, tanyakan pada dirimu apakah barang atau
+                                    layanan tersebut adalah kebutuhan atau keinginan.
+                                    Jika itu keinginan, pertimbangkan apakah pembelian tersebut benar-benar penting atau
+                                    bisa ditunda.
+                                    <br><br> 4. Tetapkan Anggaran untuk Kebutuhan dan Keinginan
+                                    <br><br> Buat anggaran yang terpisah untuk kebutuhan dan keinginan. Misalnya,
+                                    alokasikan 70% dari pendapatan untuk kebutuhan dan 30% untuk keinginan.
+                                    Ini membantu mengontrol pengeluaran dan mencegah pemborosan.
+                                    <br><br> 5. Gunakan Metode 24 Jam
+                                    <br><br> Jika tergoda untuk membeli barang yang tidak mendesak, tunggu selama 24 jam
+                                    sebelum membuat keputusan.
+                                    Ini memberi waktu untuk menilai apakah barang tersebut benar-benar dibutuhkan atau
+                                    hanya keinginan sementara.
+                                    <br><br> 6. Evaluasi Pengeluaran Bulanan
+                                    <br><br> Secara berkala, tinjau kembali pengeluaran bulanan untuk melihat apakah ada
+                                    keinginan yang bisa dikurangi atau dihilangkan.
+                                    Ini membantu menjaga anggaran tetap sesuai dengan rencana.
+                                    <br><br> 7. Membuat Tujuan Keuangan
+                                    <br><br> Tetapkan tujuan keuangan jangka pendek dan jangka panjang. Dengan fokus
+                                    pada tujuan ini,
+                                    kamu dapat lebih mudah memisahkan mana yang merupakan kebutuhan untuk mencapai
+                                    tujuan tersebut dan mana yang hanya keinginan.
+                                    <br><br> 8. Pertimbangkan Alternatif yang Lebih Murah
+                                    <br><br> Jika keinginanmu adalah untuk sesuatu yang mahal, pertimbangkan alternatif
+                                    yang lebih murah atau hemat biaya yang masih bisa memberikan kepuasan yang sama.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunasi dan Hindari Hutang -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Lunasi dan Hindari Hutang
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;">Melunasi dan menghindari
+                            hutang adalah langkah penting untuk mencapai kebebasan finansial dan kestabilan ekonomi.
+                            Jika Anda memiliki utang, buat rencana pelunasan yang terstruktur. Prioritaskan membayar
+                            utang dengan bunga tinggi terlebih dahulu untuk mengurangi beban bunga.
+                        </p>
+                        <br>
+                        <a href="Lunasi dan Hindari Hutang" class="learn-more d-inline-block mt-3"
+                            data-bs-toggle="modal" data-bs-target="#feature4Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Lunasi dan Hindari Hutang
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Lunasi dan Hindari Hutang -->
+                <div class="modal fade" id="feature4Modal" tabindex="-1" aria-labelledby="feature4ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature4ModalLabel">Tips Lunasi
+                                    dan Hindari Hutang</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Berikut beberapa tips yang bisa membantu kamu dalam
+                                    melunasi dan menghindari hutang yang efektif:
+                                    <br><br> 1. Prioritaskan Pembayaran
+                                    <br><br> Fokuskan pembayaran pada hutang dengan suku bunga tertinggi terlebih dahulu
+                                    untuk mengurangi biaya bunga secara keseluruhan.
+                                    Setelah hutang dengan bunga tertinggi lunas, lanjutkan ke hutang berikutnya.
+                                    <br><br> 2. Bayar Lebih dari Minimum
+                                    <br><br> Usahakan untuk selalu membayar lebih dari jumlah minimum yang ditagihkan.
+                                    Ini membantu mengurangi pokok hutang lebih cepat dan menghemat bunga.
+                                    <br><br> 3. Hindari Utang Baru
+                                    <br><br> Selama proses pelunasan, hindari menambah utang baru. Batasi penggunaan
+                                    kartu kredit dan pinjaman kecuali benar-benar mendesak.
+                                    <br><br> 4. Buat Anggaran
+                                    <br><br> Tentukan anggaran bulanan yang realistis dan patuhi anggaran tersebut.
+                                    Prioritaskan pembayaran hutang dalam anggaran kamu.
+                                    <br><br> 5. Gunakan Penghasilan Tambahan
+                                    <br><br> Jika kamu mendapatkan penghasilan tambahan seperti bonus, hadiah, atau
+                                    kerja sampingan, gunakan sebagian besar atau seluruhnya untuk melunasi hutang.
+                                    <br><br> 6. Kurangi Pengeluaran
+                                    <br><br> Identifikasi pengeluaran yang bisa dikurangi atau dihilangkan, dan
+                                    alokasikan dana tersebut untuk membayar hutang.
+                                    <br><br> 7.Gunakan Dana Darurat
+                                    <br><br> Pastikan kamu memiliki dana darurat untuk mengatasi situasi tak terduga
+                                    tanpa harus berutang lagi.
+                                    Sisihkan sebagian penghasilan untuk membangun dana darurat.<br><br> Tuliskan semua
+                                    pengeluaran potensial dan klasifikasikan masing-masing sebagai kebutuhan atau
+                                    keinginan.
+                                    Kebutuhan adalah hal-hal yang esensial untuk hidup sehari-hari, seperti makanan,
+                                    tempat tinggal, dan utilitas.
+                                    Keinginan adalah hal-hal yang menambah kenyamanan atau kesenangan, seperti liburan
+                                    atau gadget terbaru.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simpan Sebagian Pendapatan -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Simpan Sebagian Pendapatan
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;">Biasakan menyisihkan
+                            sebagian dari pendapatan Anda untuk tabungan.
+                            Anda bisa memulai dengan 10-20% dari pendapatan bulanan Anda. Tabungan ini bisa digunakan
+                            untuk keperluan darurat atau investasi di masa mendatang.
+                        </p>
+                        <br>
+                        <a href="Simpan Sebagian Pendapatan" class="learn-more d-inline-block mt-3"
+                            data-bs-toggle="modal" data-bs-target="#feature5Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Simpan Sebagian Pendapatan
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Simpan Sebagian Pendapatan -->
+                <div class="modal fade" id="feature5Modal" tabindex="-1" aria-labelledby="feature5ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature5ModalLabel">Tips Simpan
+                                    Sebagian Pendapatan</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Berikut beberapa tips yang bisa membantu kamu dalam
+                                    menyimpan sebagai pendapatan kamu:
+                                    <br><br> 1. Prioritaskan Pembayaran
+                                    <br><br> Fokuskan pembayaran pada hutang dengan suku bunga tertinggi terlebih dahulu
+                                    untuk mengurangi biaya bunga secara keseluruhan.
+                                    Setelah hutang dengan bunga tertinggi lunas, lanjutkan ke hutang berikutnya.
+                                    <br><br> 2. Bayar Lebih dari Minimum
+                                    <br><br> Usahakan untuk selalu membayar lebih dari jumlah minimum yang ditagihkan.
+                                    Ini membantu mengurangi pokok hutang lebih cepat dan menghemat bunga.
+                                    <br><br> 3. Hindari Utang Baru
+                                    <br><br> Selama proses pelunasan, hindari menambah utang baru. Batasi penggunaan
+                                    kartu kredit dan pinjaman kecuali benar-benar mendesak.
+                                    <br><br> 4. Buat Anggaran
+                                    <br><br> Tentukan anggaran bulanan yang realistis dan patuhi anggaran tersebut.
+                                    Prioritaskan pembayaran hutang dalam anggaran kamu.
+                                    <br><br> 5. Gunakan Penghasilan Tambahan
+                                    <br><br> Jika kamu mendapatkan penghasilan tambahan seperti bonus, hadiah, atau
+                                    kerja sampingan, gunakan sebagian besar atau seluruhnya untuk melunasi hutang.
+                                    <br><br> 6. Kurangi Pengeluaran
+                                    <br><br> Identifikasi pengeluaran yang bisa dikurangi atau dihilangkan, dan
+                                    alokasikan dana tersebut untuk membayar hutang.
+                                    <br><br> 7.Gunakan Dana Darurat
+                                    <br><br> Pastikan kamu memiliki dana darurat untuk mengatasi situasi tak terduga
+                                    tanpa harus berutang lagi.
+                                    Sisihkan sebagian penghasilan untuk membangun dana darurat.
+                                    <br><br> Tuliskan semua pengeluaran potensial dan klasifikasikan masing-masing
+                                    sebagai kebutuhan atau keinginan.
+                                    Kebutuhan adalah hal-hal yang esensial untuk hidup sehari-hari, seperti makanan,
+                                    tempat tinggal, dan utilitas.
+                                    Keinginan adalah hal-hal yang menambah kenyamanan atau kesenangan, seperti liburan
+                                    atau gadget terbaru.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menyediakan Dana Darurat -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Menyediakan Dana Darurat
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;"> Membangun dana darurat
+                            adalah salah satu langkah penting untuk memastikan stabilitas finansial dan kesiapan
+                            menghadapi situasi tak terduga.
+                            Usahakan memiliki dana darurat yang mencukupi untuk menutup biaya hidup selama 3-6 bulan.
+                            Dana ini akan sangat berguna dalam situasi tak terduga seperti kehilangan pekerjaan atau
+                            biaya medis mendadak.
+                        </p>
+                        <br>
+                        <a href="Menyediakan Dana Darurat" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                            data-bs-target="#feature6Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Menyediakan Dana Darurat
+                        </a>
+                    </h2>
+                </div>
+
+
+                <!-- Tips Menyediakan Dana Darurat -->
+                <div class="modal fade" id="feature6Modal" tabindex="-1" aria-labelledby="feature6ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature6ModalLabel">Tips
+                                    Menyediakan Dana Darurat</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Berikut beberapa tips yang bisa membantu kamu dalam
+                                    menyediakan dana darurat:
+                                    <br><br> 1. Membuat Anggaran
+                                    <br><br> Menentukan jumlah dana darurat, buat anggaran bulanan yang mencakup
+                                    tabungan untuk dana darurat.
+                                    Sisihkan sejumlah uang setiap bulan khusus untuk dana darurat. Idealnya dana darurat
+                                    harus mencakup 3-6 bulan pengeluaran hidup.
+                                    Pertimbangkan biaya kebutuhan dasar seperti sewa, makanan, utilitas, dan
+                                    transportasi. Jika ada tanggungan atau pekerjaan yang tidak stabil,
+                                    pertimbangkan untuk menyimpan lebih banyak.
+                                    <br><br> 2. Evaluasi Pengeluaran Bulanan
+                                    <br><br> Catat semua pengeluaran bulanan untuk memahami berapa banyak uang yang
+                                    dibutuhkan untuk kebutuhan dasar.
+                                    Ini akan membantu kamu menentukan jumlah dana darurat yang tepat.
+                                    <br><br> 3. Evaluasi dan Sesuaikan Dana Darurat
+                                    <br><br> Secara berkala, tinjau kembali jumlah dana daruratmu untuk memastikan masih
+                                    sesuai dengan kebutuhan saat ini.
+                                    Jika terjadi perubahan besar dalam hidup, seperti pekerjaan baru atau penambahan
+                                    anggota keluarga, sesuaikan jumlah tabunganmu.
+                                    <br><br> 4. Bersabar dan Konsisten
+                                    <br><br> Membangun dana darurat mungkin memerlukan waktu, tetapi yang paling penting
+                                    adalah konsistensi dan kesabaran.
+                                    Teruskan menabung hingga mencapai target yang telah ditentukan.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mengontrol Pembelian Impulsif -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Mengontrol Pembelian Impulsif
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;"> Mengontrol pembelian
+                            impulsif adalah cara penting untuk menjaga kesehatan finansial. Pembelian impulsif terjadi
+                            ketika kita membeli sesuatu secara spontan
+                            tanpa perencanaan atau pertimbangan matang, sering kali dipicu oleh emosi atau godaan
+                            sesaat.Hal ini dapat membantu mengurangi pengeluaran yang tidak perlu.
+                        </p>
+                        <br>
+                        <a href="Mengontrol Pembelian Impulsif" class="learn-more d-inline-block mt-3"
+                            data-bs-toggle="modal" data-bs-target="#feature8Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Mengontrol Pembelian Impulsif
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Mengontrol Pembelian Implusif -->
+                <div class="modal fade" id="feature8Modal" tabindex="-1" aria-labelledby="feature8ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature8ModalLabel">Tips
+                                    Mengontrol Pembelian Impulsif</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Menghindari pembelian impulsif adalah langkah
+                                    penting untuk menjaga kesehatan keuangan pribadi. Salah satu cara efektif untuk
+                                    mengurangi pembelian impulsif adalah dengan membuat daftar belanja sebelum pergi ke
+                                    toko atau berbelanja online. Patuhi daftar ini dan hindari menambahkan barang-barang
+                                    yang tidak direncanakan. Selain itu, tetapkan anggaran bulanan yang realistis dan
+                                    batasi pengeluaran sesuai dengan anggaran tersebut. Dengan memiliki rencana yang
+                                    jelas, kamu bisa lebih bijak dalam berbelanja dan menghindari godaan untuk membeli
+                                    barang-barang yang tidak diperlukan. <br><br>
+                                    <p class="fw-light fs-6 text-start"> Penting untuk memberikan waktu sebelum
+                                        memutuskan untuk membeli sesuatu. Misalnya, tunggu 24 jam sebelum melakukan
+                                        pembelian yang tidak terencana. Ini memberikan kamu kesempatan untuk berpikir
+                                        apakah barang tersebut benar-benar diperlukan atau hanya keinginan sesaat.
+                                        Hindari juga berbelanja saat sedang emosional, baik itu saat merasa stres,
+                                        sedih, atau terlalu bahagia, karena emosi bisa mempengaruhi keputusan
+                                        berbelanja. Dengan menunda pembelian dan menjaga emosi tetap stabil, kamu bisa
+                                        membuat keputusan yang lebih rasional dan bertanggung jawab. <br><br>
+                                        <p class="fw-light fs-6 text-start"> Gunakan uang tunai daripada kartu kredit
+                                            saat berbelanja, karena ini membantu kamu lebih sadar akan pengeluaranmu.
+                                            Membawa uang tunai sesuai dengan anggaran yang telah ditetapkan dapat
+                                            membatasi pengeluaran yang tidak perlu. Selain itu, manfaatkan diskon dan
+                                            promosi dengan bijak, dan pastikan bahwa kamu hanya membeli barang yang
+                                            memang diperlukan. Dengan menerapkan strategi ini, kamu dapat mengurangi
+                                            pembelian impulsif dan menjaga keuangan tetap sehat.
+                                        </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menetapkan Tujuan Finansial -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Menetapkan Tujuan Finansial
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;"> Buat tujuan keuangan jangka
+                            pendek dan jangka panjang. Ini bisa berupa menabung untuk liburan, membeli rumah, atau
+                            mempersiapkan dana pensiun.
+                            Tujuan ini akan memberikan motivasi untuk mengelola keuangan dengan baik. dapat membantu
+                            mengurangi pengeluaran yang tidak perlu.
+                        </p>
+                        <br>
+                        <a href="Tetapkan Tujuan Finansial" class="learn-more d-inline-block mt-3"
+                            data-bs-toggle="modal" data-bs-target="#feature9Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Menetapkan Tujuan Finansial
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Menetapkan Tujuan Finansial -->
+                <div class="modal fade" id="feature9Modal" tabindex="-1" aria-labelledby="feature9ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature9ModalLabel">Tips
+                                    Menetapkan Tujuan Finansial</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Berikut beberapa tips yang bisa membantu kamu dalam
+                                    menetapkan tujuan finansial :
+                                    <br><br> 1. Identifikasi dan Tuliskan Tujuan
+                                    <br><br> Mulailah dengan mengidentifikasi apa saja tujuan finansialmu, baik jangka
+                                    pendek, menengah, maupun jangka panjang. Tuliskan tujuan-tujuan ini secara spesifik,
+                                    seperti menabung untuk dana darurat sebesar 10 juta rupiah dalam waktu 6 bulan.
+                                    <br><br> 2. Tentukan Prioritas
+                                    <br><br> Setelah mengidentifikasi tujuan, tentukan prioritas dari masing-masing
+                                    tujuan tersebut. Fokuslah pada tujuan yang paling penting dan mendesak terlebih
+                                    dahulu, seperti melunasi utang atau membangun dana darurat, sebelum beralih ke
+                                    tujuan lain yang mungkin lebih lama jangka waktunya.
+                                    <br><br> Buat Rencana Aksi
+                                    <br><br> Rencana aksi adalah langkah konkret yang akan kamu ambil untuk mencapai
+                                    tujuan finansialmu. Ini bisa mencakup membuat anggaran, mengurangi pengeluaran tidak
+                                    penting, atau mencari sumber penghasilan tambahan. Pastikan setiap rencana aksi
+                                    memiliki langkah-langkah yang jelas dan dapat diukur. </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menggunakan Aplikasi Pengelola Keuangan -->
+                <div class="col-md-16 mb-4">
+                    <h2
+                        class="text-center text-black fw-lighter fs-6 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded fw-bold text-primary mb-3">
+                        Menggunakan Aplikasi Pengelola Keuangan
+                        <br><br>
+                        <p class="text-black fw-lighter fs-20" style="text-align: justify;"> Manfaatkan teknologi dengan
+                            menggunakan aplikasi pengelola keuangan untuk memantau pengeluaran, membuat anggaran, dan
+                            melihat pola pengeluaran Anda.
+                            Seperti bersama YouFin
+                        </p>
+                        <br>
+                        <a href="Gunakan Aplikasi Pengelola Keuangan" class="learn-more d-inline-block mt-3"
+                            data-bs-toggle="modal" data-bs-target="#feature10Modal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                                <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                            </svg>
+                            Tips Menggunakan Aplikasi Pengelola Keuangan
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- Tips Gunakan Aplikasi Pengelola Keuangan -->
+                <div class="modal fade" id="feature10Modal" tabindex="-1" aria-labelledby="feature10ModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-4 text-primary" id="feature10ModalLabel">Tips Gunakan
+                                    Aplikasi Pengelola Keuangan</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p class="fw-light fs-6 text-start"> Menggunakan aplikasi keuangan bisa sangat membantu
+                                    dalam mengelola keuangan pribadi dan mencapai tujuan finansial. salah satu aplikasi
+                                    yang dapat membantu adalah dengan YOUFIN.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-success">
+                                    <i class="uil uil-rocket"></i> Buat Anggaran
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}

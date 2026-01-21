@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouFin | Young Finance</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Beranda -->
+    <!-- Header -->
+    <header class="bg-primary sticky-top">
+        <!-- Bootstrap Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+            <div class="container">
+                <!-- Logo & Brand -->
+                <div class="d-flex align-items-center">
+                    <img src="{% static 'img/logo_yf.png' %}" alt="yf" class="me-3" style="width: 50px;">
+                    <a class="navbar-brand fs-2 fw-bold" href="#">YouFin</a>
+                </div>
+
+                <!-- Hamburger Button -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navigation Content -->
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
+                        <!-- Menu Items dengan gap -->
+                        <li class="nav-item mb-2 mb-lg-0">
+                            <a class="nav-link px-3 text-white" href="#">Beranda</a>
+                        </li>
+                        <li class="nav-item mb-2 mb-lg-0">
+                            <a class="nav-link px-3 text-white" href="#about">Tentang Kami</a>
+                        </li>
+                        <li class="nav-item mb-2 mb-lg-0">
+                            <a class="nav-link px-3 text-white" href="#features">Fitur Unggulan</a>
+                        </li>
+                        <li class="nav-item mb-2 mb-lg-0">
+                            <a class="nav-link px-3 text-white" href="#contact">Kontak</a>
+                        </li>
+
+                        <!-- Button group dengan gap -->
+                        <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-3">
+                            <a class="btn btn-outline-light px-4" href="{% url 'registration' %}">
+                                <i class="uil uil-rocket me-1"></i> Coba Sekarang
+                            </a>
+                            <a class="btn btn-success px-4" href="{% url 'login' %}">
+                                <i class="bi bi-box-arrow-in-right me-1"></i> Masuk
+                            </a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- /Header -->
+
+    <!-- Hero Section -->
+    <section id="home" class="nav-section bg-primary text-white vh-100 d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center flex-column-reverse flex-md-row">
+                <div class="col-md-6 text-center text-md-start order-md-1 order-2">
+                    <h3 class="display-4 fw-bold mb-4">Kelola Keuangan dengan Mudah dan Efisien!</h3>
+                    <p class="lead fs-4 mb-4">YouFin hadir untuk membantu Anda merencanakan, melacak, dan mengoptimalkan
+                        kebiasaan finansial dengan lebih baik.</p>
+                    <a class="btn btn-light d-none d-md-inline" href="#about">Lihat Tentang Kami</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end order-md-2 order-1">
+                    <img src="{% static 'img/Pngtree-financial-economy.png' %}" alt="" class="img-fluid custom-img">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Hero Section -->
+    <!-- /Beranda -->
+
+    <!-- Tentang Kami -->
+    <section id="about" class="nav-section bg-gray-200">
+        <div class="container">
+            <h3 class="display-5 fw-bold text-center mb-4 text-primary">Tentang Kami</h3>
+            <p class="text-center text-black fw-lighter fs-5 bg-white mb-5 border border-2 border-primary p-3 rounded">
+                YouFin, singkatan dari Young Finance, adalah platform manajemen keuangan inovatif yang dirancang untuk
+                membantu pengguna mencatat pemasukan dan pengeluaran sehari-hari. Dengan fitur pengelompokan kategori
+                yang
+                intuitif, YouFin memudahkan pengguna dalam membuat laporan keuangan dan menyusun anggaran yang
+                dibutuhkan.
+                Platform ini dapat diakses kapan saja dan di mana saja, sehingga membantu pengguna dalam mencapai tujuan
+                keuangan mereka dengan lebih efisien.
+            </p>
+
+            <!-- Visi & Misi -->
+            <h3 class="h3 text-center mb-4 fw-bold text-primary">Visi & Misi</h3>
+            <div class="row">
+                <!-- Visi -->
+                <div class="col-md-6 mb-4">
+                    <div class="p-4 border border-3 border-primary rounded h-100 shadow-sm bg-white">
+                        <h5 class="fw-bold text-primary mb-3"><i class="uil uil-eye fs-3 text-primary me-2"></i> Visi
+                        </h5>
+                        <p class="text-black fw-lighter fs-5" style="text-align: justify;">
+                            Meningkatkan literasi keuangan masyarakat Indonesia melalui edukasi dan solusi teknologi
+                            yang
+                            mendukung pengelolaan keuangan pribadi secara lebih baik.
+                        </p>
+                    </div>
+                </div>
+                <!-- Misi -->
+                <div class="col-md-6 mb-4">
+                    <div class="p-4 border border-3 border-primary rounded h-100 shadow-sm bg-white">
+                        <h5 class="fw-bold text-primary mb-3"><i class="bi bi-flag-fill fs-3 text-primary me-2"></i>
+                            Misi</h5>
+                        <ul class="list-unstyled text-black fw-lighter fs-5" style="text-align: justify;">
+                            <li class="mb-3 border border-2 border-primary p-3 rounded">
+                                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                YouFin berkomitmen untuk menyediakan layanan aplikasi pengelola keuangan yang aman dan
+                                terpercaya guna meningkatkan literasi keuangan masyarakat Indonesia.
+                            </li>
+                            <li class="mb-3 border border-2 border-primary p-3 rounded">
+                                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                YouFin membantu pengguna memahami pola pemasukan dan pengeluaran mereka serta
+                                menganalisis
+                                kondisi keuangan secara menyeluruh.
+                            </li>
+                            <li class="border border-2 border-primary p-3 rounded">
+                                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                YouFin menyediakan berbagai tips keuangan yang praktis dan relevan untuk membantu
+                                pengguna
+                                mengelola keuangan mereka secara lebih bijak dan efektif.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /Visi & Misi -->
+        </div>
+    </section>
+    <!-- /Tentang Kami -->
+
+    <!-- Fitur Unggulan -->
+    <section id="features" class="features-section bg-white">
+        <div class="container">
+            <h3 class="display-5 fw-bold text-center mb-4 text-primary">Fitur Unggulan</h3>
+            <p
+                class="text-center text-black fw-lighter fs-5 bg-gray-200 mb-5 border border-2 border-primary p-3 rounded">
+                YouFin menawarkan fitur pengaturan anggaran, pencatatan transaksi, visualisasi data, akses multi-device,
+                dan tips
+                keuangan untuk mendukung pengguna dalam
+                mengelola keuangan secara efisien dan efektif.
+            </p><br>
+            <!-- Feature 1 -->
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Anggaran</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Fitur Anggaran memungkinkan pengguna untuk membuat, mengelola, dan memantau anggaran keuangan
+                        mereka dengan lebih efektif...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature1Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2" />
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/anggaran.png' %}" alt="Anggaran" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Transaksi</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Fitur Transaksi memungkinkan pengguna untuk mencatat dan melacak semua aktivitas keuangan mereka
+                        dengan mudah dan terorganisir...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature2Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2" />
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/transaksi.png' %}" alt="Transaksi" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Grafik</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Fitur Grafik memberikan visualisasi yang jelas dan informatif tentang kondisi keuangan
+                        pengguna...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature3Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2" />
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/grafik1.png' %}" alt="Grafik" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <!-- <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Notifikasi</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Fitur Notifikasi memberikan kemudahan bagi pengguna untuk tetap terorganisir dan tidak
+                        melewatkan kewajiban keuangan mereka...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature4Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2" />
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/notif.png' %}" alt="Notifikasi" class="img-fluid">
+                </div>
+            </div> -->
+
+            <!-- Feature 5 -->
+            <!-- <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Premium</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Bergabunglah dengan komunitas pengguna YouFin untuk berbagi pengalaman dan tips pengelolaan
+                        keuangan...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature5Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2" />
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/premium1.png' %}" alt="Premium" class="img-fluid">
+                </div>
+            </div> -->
+
+            <!-- Feature 6 -->
+            <!-- <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Konsultasi Keuangan</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Fitur Konsultasi Keuangan berbasis AI ini dirancang untuk membantu pengguna memahami dan
+                        mengelola keuangan mereka dengan lebih baik...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature6Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2" />
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/tips.png' %}" alt="Konsultasi Keuangan" class="img-fluid">
+                </div>
+            </div> -->
+
+            <!-- Feature 7 -->
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Multi Device</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Akses platform YouFin di berbagai perangkat, untuk kemudahan pengelolaan keuangan kapan saja dan
+                        di mana saja...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature7Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2"></circle>
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2"></path>
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/multi_device.jpg' %}" alt="Multi Device" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Feature 8 -->
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title fw-bold text-primary">Tips Keuangan</h2>
+                    <p class="feature-description text-black fw-lighter fs-5" style="text-align: justify;">
+                        Fitur Tips Keuangan menyediakan berbagai panduan dan saran praktis untuk membantu pengguna
+                        meningkatkan pengetahuan dan keterampilan pengelolaan keuangan mereka...
+                    </p>
+                    <a href="#" class="learn-more d-inline-block mt-3" data-bs-toggle="modal"
+                        data-bs-target="#feature8Modal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#0061ff" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke="#0061ff" stroke-width="2" />
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'img/features/financial_tips.jpg' %}" alt="Tips Keuangan" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Modal Feature 1 -->
+            <div class="modal fade" id="feature1Modal" tabindex="-1" aria-labelledby="feature1ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature1ModalLabel">Fitur Anggaran
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/anggaran.png' %}" alt="Anggaran" class="img-fluid mb-3"
+                                style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">Fitur Anggaran memungkinkan pengguna untuk membuat,
+                                mengelola, dan memantau anggaran keuangan mereka dengan lebih efektif. Pengguna dapat
+                                menetapkan batas pengeluaran untuk berbagai kategori, seperti kebutuhan sehari-hari,
+                                tagihan, dan tabungan. Dengan fitur ini, pengguna dapat mengontrol pengeluaran mereka
+                                dan memastikan bahwa mereka tetap berada dalam batas anggaran yang telah ditentukan. Ini
+                                juga membantu pengguna untuk mengidentifikasi area di mana mereka dapat menghemat uang
+                                dan meningkatkan kesehatan finansial mereka secara keseluruhan.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
+                                    class="bi bi-x-circle"></i> Tutup</button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Modal Feature 1 -->
+
+            <!-- Modal Feature 2 -->
+            <div class="modal fade" id="feature2Modal" tabindex="-1" aria-labelledby="feature2ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature2ModalLabel">Fitur Transaksi
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/transaksi.png' %}" alt="Transaksi" class="img-fluid mb-3"
+                                style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">Fitur Transaksi memungkinkan pengguna untuk mencatat dan
+                                melacak semua aktivitas keuangan mereka dengan mudah dan terorganisir. Pengguna dapat
+                                mencatat pemasukan dan pengeluaran dengan rincian yang jelas, termasuk kategori,
+                                tanggal, dan nominal transaksi. Dengan fitur ini, pengguna dapat memperoleh pemahaman
+                                yang lebih baik tentang aliran uang mereka, memudahkan pengelolaan keuangan, dan
+                                membantu mereka membuat keputusan yang lebih bijaksana.</p>
+                            <ul class="fw-light fs-5 text-start">
+                                <li>Pencatatan yang Mudah</li>
+                                <li>Kategorisasi Transaksi</li>
+                                <li>Riwayat Transaksi</li>
+                                <li>Laporan Keuangan</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Tutup
+                            </button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Modal Feature 2 -->
+
+            <!-- Modal Feature 3 -->
+            <div class="modal fade" id="feature3Modal" tabindex="-1" aria-labelledby="feature3ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature3ModalLabel">Fitur Grafik</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/grafik1.png' %}" alt="Grafik" class="img-fluid mb-4"
+                                style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">
+                                Fitur Grafik memberikan visualisasi yang jelas dan informatif tentang kondisi keuangan
+                                pengguna. Dengan grafik yang interaktif, pengguna dapat dengan mudah melacak
+                                pengeluaran, pendapatan, dan perkembangan keuangan mereka dari waktu ke waktu. Fitur ini
+                                dirancang untuk membantu pengguna memahami pola keuangan mereka, mengidentifikasi area
+                                yang memerlukan perhatian, dan merencanakan langkah ke depan untuk mencapai tujuan
+                                keuangan.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Tutup
+                            </button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Modal Feature 3 -->
+
+            <!-- Modal Feature 4 -->
+            <!-- <div class="modal fade" id="feature4Modal" tabindex="-1" aria-labelledby="feature4ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature4ModalLabel">Fitur Notifikasi
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/notif.png' %}" alt="Notifikasi" class="img-fluid mb-4"
+                                style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">
+                                Fitur Notifikasi memberikan kemudahan bagi pengguna untuk tetap terorganisir dan tidak
+                                melewatkan kewajiban keuangan mereka. Dengan sistem notifikasi yang efisien, pengguna
+                                akan mendapatkan pengingat untuk setiap pembayaran yang harus dilakukan, termasuk
+                                tagihan bulanan, cicilan, atau transaksi penting lainnya. Fitur ini dirancang untuk
+                                membantu pengguna mengelola keuangan mereka dengan lebih baik, mengurangi risiko denda
+                                atau keterlambatan pembayaran, serta menjaga kesehatan finansial.
+                            </p>
+                            <ul class="fw-light fs-5 text-start">
+                                <li>Pengingat Pembayaran Tepat Waktu</li>
+                                <li>Pengingat untuk Transaksi Penting</li>
+                                <li>Kustomisasi Notifikasi</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Tutup
+                            </button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- /Modal Feature 4 -->
+
+            <!-- Modal Feature 5 -->
+            <!-- <div class="modal fade" id="feature5Modal" tabindex="-1" aria-labelledby="feature5ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature5ModalLabel">Fitur Premium</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/premium1.png' %}" alt="Premium" class="img-fluid mb-4"
+                                style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">
+                                Bergabunglah dengan komunitas pengguna YouFin untuk berbagi pengalaman dan tips
+                                pengelolaan keuangan.
+                            </p>
+                            <ul class="fw-light fs-5 text-start">
+                                <li>Akses Eksklusif: Menawarkan alat dan fitur yang tidak tersedia untuk pengguna biasa.
+                                </li>
+                                <li>Laporan Mendetail: Memberikan analisis mendalam untuk membantu pengguna mengelola
+                                    keuangan mereka.</li>
+                                <li>Konsultasi Tambahan: Menyediakan fitur konsultasi lebih lanjut melalui platform AI.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Tutup
+                            </button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- /Modal Feature 5 -->
+
+            <!-- Modal Feature 6 -->
+            <!-- <div class="modal fade" id="feature6Modal" tabindex="-1" aria-labelledby="feature6ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature6ModalLabel">Fitur Konsultasi
+                                Keuangan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/tips.png' %}" alt="Konsultasi Keuangan"
+                                class="img-fluid mb-4" style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">
+                                Fitur Konsultasi Keuangan berbasis AI ini dirancang untuk membantu pengguna memahami dan
+                                mengelola keuangan mereka dengan lebih baik. Dengan teknologi berbasis AI, pengguna
+                                dapat menerima rekomendasi yang disesuaikan untuk membantu mereka menyusun rencana
+                                keuangan yang sesuai dengan tujuan mereka dan mendapatkan pemahaman yang lebih dalam
+                                tentang pengelolaan keuangan pribadi. Fitur ini tidak hanya memberikan bimbingan dalam
+                                perencanaan keuangan, tetapi juga membantu pengguna mengembangkan keterampilan yang
+                                diperlukan untuk membuat keputusan keuangan yang cerdas.
+                            </p>
+                            <ul class="fw-light fs-5 text-start">
+                                <li>Rekomendasi Keuangan yang Disesuaikan</li>
+                                <li>Perencanaan Keuangan</li>
+                                <li>Saran Penghematan dan Pengeluaran</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Tutup
+                            </button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- /Modal Feature 6 -->
+
+            <!-- Modal Feature 7 -->
+            <div class="modal fade" id="feature7Modal" tabindex="-1" aria-labelledby="feature7ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature7ModalLabel">Fitur Multi Device
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/multi_device.jpg' %}" alt="Multi Device"
+                                class="img-fluid mb-4" style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">
+                                Akses platform YouFin di berbagai perangkat, untuk kemudahan pengelolaan keuangan kapan
+                                saja dan di mana saja.
+                            </p>
+                            <ul class="fw-light fs-5 text-start">
+                                <li>Termasuk smartphone</li>
+                                <li>Tablet</li>
+                                <li>Komputer</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Tutup
+                            </button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Modal Feature 7 -->
+
+            <!-- Modal Feature 8 -->
+            <div class="modal fade" id="feature8Modal" tabindex="-1" aria-labelledby="feature8ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold fs-4 text-primary" id="feature8ModalLabel">Fitur Tips
+                                Keuangan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{% static 'img/features/financial_tips.jpg' %}" alt="Tips Keuangan"
+                                class="img-fluid mb-4" style="max-width: 80%;">
+                            <p class="fw-light fs-5 text-start">
+                                Fitur Tips Keuangan menyediakan berbagai panduan dan saran praktis untuk membantu
+                                pengguna meningkatkan pengetahuan dan keterampilan pengelolaan keuangan mereka. Dengan
+                                tips yang disesuaikan dengan kondisi keuangan pengguna, fitur ini membantu mereka
+                                membuat keputusan yang lebih baik dalam mengelola pengeluaran dan menabung.
+                            </p>
+                            <ul class="fw-light fs-5 text-start">
+                                <li>Saran Praktis untuk Menghemat Uang</li>
+                                <li>Tips Mengelola Pengeluaran Sehari-hari</li>
+                                <li>Cara Efektif Menyusun Rencana Tabungan</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Tutup
+                            </button>
+                            <a href="{% url 'registration' %}" class="btn btn-success">
+                                <i class="uil uil-rocket"></i> Coba Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Modal Feature 8 -->
+
+        </div>
+    </section>
+    <!-- /Fitur Unggulan -->
+
+    <!-- Hubungi Kami -->
+    <section id="contact" class="nav-section bg-gray-200">
+        <div class="container">
+            <h3 class="display-5 fw-bold text-center mb-4 text-primary">Kontak</h3>
+            <p
+                class="text-center text-black fw-lighter fs-5 bg-white mb-5 border border-2 border-primary p-3 rounded text-center text-secondary mb-5">
+                Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk
+                menghubungi kami. Kami siap membantu Anda!</p>
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <div
+                        class="text-black fw-lighter fs-5 bg-white mb-5 border border-2 border-primary p-4 rounded shadow">
+                        <h5 class="fw-bold text-primary">Informasi Kontak</h5>
+                        <p class="text-black">Anda dapat menghubungi kami melalui:</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-telephone-fill"></i> Telepon: (021) 1234-5678</li>
+                            <li><i class="bi bi-envelope-fill"></i> Email: support@youfin.com</li>
+                            <li><i class="bi bi-house-door-fill"></i> Alamat: Jl. In Aja Dulu No. 123, Bandung, Jawa
+                                Barat</li>
+                        </ul>
+                        <p class="text-black">Kami berkomitmen untuk memberikan respon yang cepat dan membantu Anda
+                            dengan segala kebutuhan keuangan Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Hubungi Kami -->
+
+    <!-- Footer -->
+    <footer class="bg-primary text-light py-3">
+        <div class="container text-center">
+            <p class="mb-0" style="font-size: 17px;">&copy; YouFin 2024 | Semua Hak Dilindungi</p>
+            <p class="mb-0" style="font-size: 14px;">Pusat Edukasi Keuangan Anda</p>
+        </div>
+    </footer>
+    <!-- /Footer -->
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- Script JS -->
+    <script src="{% static 'bootstrap/js/script.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block title %} Konsultasi Keuangan {% endblock %}
+
+{% block style_konsultasi %}
+<link rel="stylesheet" href="{% static 'bootstrap/css/konsultasi.css' %}">
+{% endblock %}
+
+{% block your_content_here %}
+<div class="overlap">
+    <div class="content-card">
+        <!-- Content here -->
+        <h1><i class="bi bi-chat-dots"></i> Konsultasi Keuangan</h1>
+
+        <div class="chat-box" id="chatBox">
+            <!-- Placeholder messages -->
+            <div class="ai-response">
+                <strong>YouFin AI:</strong> Selamat datang di sesi konsultasi keuangan! Silakan ajukan
+                pertanyaan Anda.
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <div class="input-group mt-3">
+            <input type="text" class="form-control" id="userQuery" placeholder="Ketik pertanyaan Anda di sini...">
+            <button class="btn btn-primary" id="sendBtn">
+                <i class="bi bi-send"></i> Kirim
+            </button>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script_konsultasi %}
+<script src="{% static 'bootstrap/js/konsultasi.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,209 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block title %} Pengaturan Profil {% endblock %}
+
+{% block style_pengaturan %}
+<style>
+    /* Styling untuk mengatur posisi dan tampilkan foto profil sebagai bulat dengan border tipis */
+    .profile-picture-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -20px;
+        z-index: 10;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 2px solid #aaa;
+    }
+
+    .profile-picture-placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        background: #f0f0f0;
+        color: #aaa;
+        font-size: 36px;
+        border: 2px solid #aaa;
+    }
+
+    /* Styling untuk data pengguna */
+    .user-profile-container {
+        max-width: 800px;
+        margin: 20px auto;
+    }
+
+    /* Tambahkan jarak antar tabel untuk membuat tampilannya lebih renggang */
+    .user-details table {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: separate;
+        border-spacing: 10px 15px; /* Atur jarak antar barisan */
+    }
+
+    .table td {
+        padding: 10px 15px; /* Perbesar padding untuk jarak antar teks */
+        text-align: left;
+        line-height: 1.0; /* Beri ruang vertikal antar teks */
+    }
+
+    /* Perbaikan tampilan latar tabel agar lebih bersih */
+    .user-details table tr {
+        background: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+
+    /* Efek hover pada tabel untuk keunikan */
+    .user-details table tr:hover {
+        transform: translateX(5px);
+    }
+
+    /* Style untuk judul data pengguna */
+    .user-details h4 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #555;
+    }
+</style>
+{% endblock %}
+
+{% block your_content_here %}
+<div class="overlap">
+    <div class="content-card">
+        <h1><i class="bi bi-gear" style="margin-right: 4px;"></i> Pengaturan</h1>
+
+        <!-- message -->
+        <div class="message-box mt-3">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible fade show {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}"
+                role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-- /message -->
+
+        <div class="card mt-4">
+            <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                <h5><i class="bi bi-person-circle" style="margin-right: 4px;"></i> Informasi Profil:
+                    {{ request.user.first_name }}
+                    {% if request.user.last_name != "-" %}{{ request.user.last_name }}{% endif %}
+                </h5>
+                <div>
+                    {% if not request.user.profile.is_complete %}
+                    <a href="{% url 'youfin_app:edit_pengaturan' %}" class="btn btn-light btn-outline-danger btn-sm">
+                        <i class="bi bi-pencil-square" style="margin-right: 4px;"></i> Lengkapi Data
+                    </a>
+                    {% else %}
+                    <a href="{% url 'youfin_app:edit_pengaturan' %}" class="btn btn-light btn-outline-primary btn-sm">
+                        <i class="bi bi-pencil" style="margin-right: 4px;"></i> Edit Data
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card-body d-flex justify-content-center">
+                <div class="user-profile-container text-center">
+                    <!-- Foto Profil -->
+                    <div class="profile-picture-container">
+                        {% if request.user.profile.profile_picture %}
+                        <img src="{{ request.user.profile.profile_picture.url }}" alt="Foto Profil"
+                            class="profile-picture img-thumbnail">
+                        {% else %}
+                        <div class="profile-picture-placeholder">
+                            <i class="bi bi-person-circle" style="font-size: 64px; color: #aaa;"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Data Pengguna -->
+                    <div class="user-details mt-2">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Nama Depan</strong></td>
+                                <td>: {{ request.user.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nama Belakang</strong></td>
+                                <td>: {{ request.user.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Jenis Kelamin</strong></td>
+                                <td>: 
+                                    {% if request.user.profile.gender == 'L' %}
+                                    Laki-laki
+                                    {% elif request.user.profile.gender == 'P' %}
+                                    Perempuan
+                                    {% else %}
+                                    <span class="text-muted">Belum diisi</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tanggal Lahir</strong></td>
+                                <td>: 
+                                    {% if request.user.profile.birth_date %}
+                                    {{ request.user.profile.birth_date|date:"d/m/Y" }}
+                                    {% else %}
+                                    <span class="text-muted">Belum diisi</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Alamat</strong></td>
+                                <td>: 
+                                    {% if request.user.profile.address %}
+                                    {{ request.user.profile.address }}
+                                    {% else %}
+                                    <span class="text-muted">Belum diisi</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nomor Telepon</strong></td>
+                                <td>: 
+                                    {% if request.user.profile.phone_number %}
+                                    {{ request.user.profile.phone_number }}
+                                    {% else %}
+                                    <span class="text-muted">Belum diisi</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td>: {{ request.user.email }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script_pengaturan %}
+<!-- script untuk alert message -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function (alert) {
+            setTimeout(function () {
+                var alertElement = new bootstrap.Alert(alert);
+                alertElement.close();
+            }, 3000);
+        });
+    });
+</script>
+{% endblock %}

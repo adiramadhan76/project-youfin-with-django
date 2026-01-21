@@ -1,0 +1,231 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block title %} Anggaran {% endblock %}
+
+{% block your_content_here %}
+<div class="overlap">
+    <div class="content-card">
+        <h1><i class="bi bi-wallet2" style="margin-right: 4px;"></i> Anggaran</h1>
+
+        <!-- Pesan -->
+        <div class="message-box mt-3" id="message-box">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible fade show {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}"
+                role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-- /Pesan -->
+
+        {% if saldo_bersih > 0 %}
+        <a href="{% url 'youfin_app:tambah_anggaran' %}" class="btn btn-primary">Tambah Anggaran</a>
+        {% else %}
+        <div class="alert alert-warning" role="alert" id="no-category-alert">
+            Anda tidak dapat menambahkan anggaran sebelum mencatat pemasukan. Silakan tambahkan transaksi pemasukan
+            terlebih dahulu.
+        </div>
+        <a href="{% url 'youfin_app:transaksi' %}" class="btn btn-primary mb-3">Tambah Transaksi Pemasukan</a>
+        {% endif %}
+
+        <!-- Filter Bulan dan Tahun -->
+        <form method="GET" class="mt-3">
+            <div class="row">
+                <!-- Select Bulan -->
+                <div class="col-md-3">
+                    <select name="bulan" class="form-select" required>
+                        <option value="">- Pilih Bulan -</option>
+                        {% for choice in bulan_tahun_choices %}
+                        <option value="{{ choice.bulan }}">{{ choice.nama_bulan }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Select Tahun -->
+                <div class="col-md-3">
+                    <select name="tahun" class="form-select" required>
+                        <option value="">- Pilih Tahun -</option>
+                        {% for year in unique_years %}
+                        <option value="{{ year }}">{{ year }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Tombol Filter -->
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-funnel"></i> Filter
+                    </button>
+                    <a href="{% url 'youfin_app:anggaran' %}" class="btn btn-secondary">Reset</a>
+                </div>
+            </div>
+        </form>
+
+        <!-- Alert Pengeluaran Melebihi Anggaran -->
+        <div class="alert alert-warning mt-3 alert-negative-balance" id="no-category-alert" style="display: none;"
+            role="alert">
+            Ada kategori dengan total pengeluaran yang melebihi jumlah anggaran. Harap periksa anggaran Anda!
+        </div>
+
+        <!-- Tabel Anggaran -->
+        <div class="table-responsive">
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Bulan</th>
+                        <th>Tahun</th>
+                        <th>Jumlah Anggaran</th>
+                        <th>Total Pengeluaran</th>
+                        <th>Sisa Saldo</th>
+                        <th style="text-align: center;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for budget in budgets %}
+                    <tr>
+                        <td>{{ budget.category.name }}</td>
+                        <td>{{ budget.get_bulan_display }}</td>
+                        <td>{{ budget.tahun }}</td>
+                        <td class="budget-value" data-budget="{{ budget.initial_budget }}">
+                            Rp {{ budget.initial_budget|floatformat:2 }}
+                        </td>
+                        <td class="budget-value" data-budget="{{ budget.total_expenses }}">
+                            Rp {{ budget.total_expenses|floatformat:2 }}
+                        </td>
+                        <td class="budget-value" data-budget="{{ budget.remaining_balance }}">
+                            Rp {{ budget.remaining_balance|floatformat:2 }}
+                        </td>
+                        <td>
+                            <div class="d-flex flex-row gap-1">
+                                <a href="{% url 'youfin_app:edit_anggaran' budget.id %}"
+                                    class="btn btn-warning">Edit</a>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ budget.id }}">
+                                    Hapus
+                                </button>
+                            </div>
+                            <!-- Modal Hapus -->
+                            <div class="modal fade" id="deleteModal{{ budget.id }}" tabindex="-1"
+                                aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Anggaran</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakah Anda yakin ingin menghapus anggaran untuk kategori
+                                            "{{ budget.category.name }}"?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{% url 'youfin_app:hapus_anggaran' budget.id %}"
+                                                method="POST">
+                                                {% csrf_token %}
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" style="color: red; text-align: center;">Tidak ada anggaran yang ditemukan.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script_anggaran %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ambil bulan dan tahun dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const bulanParam = urlParams.get('bulan');
+        const tahunParam = urlParams.get('tahun');
+
+        // Pilih dropdown bulan dan tahun
+        const bulanSelect = document.querySelector('select[name="bulan"]');
+        const tahunSelect = document.querySelector('select[name="tahun"]');
+
+        // Jika bulan dan tahun ditemukan di URL, pilih yang sesuai
+        if (bulanParam) {
+            for (let option of bulanSelect.options) {
+                if (option.value == bulanParam) {
+                    option.selected = true;
+                    break;
+                }
+            }
+        }
+
+        if (tahunParam) {
+            for (let option of tahunSelect.options) {
+                if (option.value == tahunParam) {
+                    option.selected = true;
+                    break;
+                }
+            }
+        }
+
+        // Format angka menjadi format rupiah dan menambahkan tanda minus jika nilai negatif
+        function formatRupiah(angka) {
+            var reverse = angka.toString().split('').reverse().join('');
+            var ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+
+            // Menambahkan tanda minus jika angka negatif
+            var isNegative = angka < 0;
+            var formatted = 'Rp ' + ribuan;
+            return isNegative ? '- ' + formatted : formatted;
+        }
+
+        // Menerapkan format rupiah pada elemen budget-value
+        document.querySelectorAll('.budget-value').forEach(function (element) {
+            var budgetValue = parseFloat(element.getAttribute('data-budget'));
+            if (!isNaN(budgetValue)) {
+                element.textContent = formatRupiah(budgetValue);
+
+                // Cek jika saldo negatif dan tampilkan alert
+                if (budgetValue < 0) {
+                    // Tampilkan alert saldo negatif jika ada saldo negatif
+                    var negativeBalanceAlert = document.querySelector('.alert-negative-balance');
+                    if (negativeBalanceAlert) {
+                        negativeBalanceAlert.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        // script untuk alert message
+        var alerts = document.querySelectorAll('.alert');
+        // Alert untuk kategori kosong tidak dihilangkan
+        var noCategoryAlert = document.getElementById('no-category-alert');
+        if (noCategoryAlert) {
+            noCategoryAlert.classList.add('show');
+        }
+        alerts.forEach(function (alert) {
+            if (!alert.closest('#no-category-alert')) {
+                setTimeout(function () {
+                    var alertElement = new bootstrap.Alert(alert);
+                    alertElement.close();
+                }, 3000);
+            }
+        });
+    });
+</script>
+{% endblock %}
