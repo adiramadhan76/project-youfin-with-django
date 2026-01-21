@@ -1,5 +1,5 @@
 # project-youfin-with-django
-Youfin (Young FInance) adalah aplikasi berbasis web yang dirancang khusus untuk
+Youfin (Young Finance) adalah aplikasi berbasis web yang dirancang khusus untuk
 membantu mahasiswa dan generasi muda mengelola keuangan pribadi dengan mudah
 dan efisien menggunakan fitur-fitur seperti pencatatan pengeluaran, pengaturan dan
 perencanaan anggaran, dan tips keuangan. Dengan antarmuka yang ramah pengguna dan
